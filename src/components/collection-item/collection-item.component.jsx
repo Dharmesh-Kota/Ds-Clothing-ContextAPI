@@ -1,15 +1,14 @@
-import React from "react";
-import { useDispatch } from 'react-redux';
+import React, { useContext } from "react";
 
 import './collection-item.styles.scss';
 
 import CustomButton from '../custom-button/custom-button.component';
 
-import { addItem } from '../../redux/cart/cart.reducer';
+import { CartContext } from "../../providers/cart/cart.provider";
 
 const CollectionItem = ({item}) => {
 
-    const dispatch = useDispatch();
+    const { addItem } = useContext(CartContext);
 
     return (
         <div className="collection-item">
@@ -23,7 +22,7 @@ const CollectionItem = ({item}) => {
                 <span className="name">{item.name}</span>
                 <span className="price">{item.price}</span>
             </div>
-            <CustomButton onClick={() => dispatch(addItem(item))} inverted> Add to Cart </CustomButton>
+            <CustomButton onClick={() => addItem(item)} inverted> Add to Cart </CustomButton>
         </div>
     )
 };
